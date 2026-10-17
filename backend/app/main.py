@@ -30,17 +30,40 @@ app.add_middleware(
 
 import time
 from datetime import datetime, timezone
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.requests import Request
+from starlette.responses import Response
+
+class HeadMethodMiddleware(BaseHTTPMiddleware):
+    """
+    Middleware ensuring HEAD requests (commonly sent by monitoring services like UptimeRobot)
+    are routed identically to GET requests, returning headers with an empty body as per RFC 7231.
+    """
+    async def dispatch(self, request: Request, call_next):
+        if request.method == "HEAD":
+            request.scope["method"] = "GET"
+            response = await call_next(request)
+            request.scope["method"] = "HEAD"
+            return Response(
+                status_code=response.status_code,
+                headers=dict(response.headers),
+                media_type=response.media_type
+            )
+        return await call_next(request)
+
+app.add_middleware(HeadMethodMiddleware)
 
 START_TIME = time.time()
 
 # Mount API router
 app.include_router(api_router)
 
-@app.get("/health", tags=["System"])
+@app.api_route("/health", methods=["GET", "HEAD"], tags=["System"])
 def root_health():
     """
     Lightweight health endpoint designed for UptimeRobot and cloud keepalive probes.
     Keeps Render free tier services awake by answering with 200 OK, timestamp, and uptime.
+    Supports both GET and HEAD methods.
     """
     return {
         "status": "ok",
@@ -71,7 +94,7 @@ if os.path.exists(FRONTEND_DIST):
         app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
 
     # Serve index.html for root and any client-side SPA route not matching /api or /docs
-    @app.get("/{full_path:path}", include_in_schema=False)
+    @app.api_route("/{full_path:path}", methods=["GET", "HEAD"], include_in_schema=False)
     async def serve_spa(full_path: str):
         # Exclude API, docs, redoc, openapi.json, health
         if full_path.startswith(("api", "docs", "redoc", "openapi.json", "health")):
@@ -88,7 +111,7 @@ if os.path.exists(FRONTEND_DIST):
             return FileResponse(index_file)
         return RedirectResponse(url="/docs")
 else:
-    @app.get("/", include_in_schema=False)
+    @app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
     def root():
         return RedirectResponse(url="/docs")
 
