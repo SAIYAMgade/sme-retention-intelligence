@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 # Copy requirements and install dependencies in bounded memory stages
 COPY requirements.txt .
-RUN pip install --no-cache-dir numpy>=1.26.0,<2.0.0 scipy>=1.12.0 pandas>=2.2.0 scikit-learn>=1.4.0 && \
+RUN pip install --no-cache-dir "numpy>=1.26.0,<2.0.0" "scipy>=1.12.0" "pandas>=2.2.0" "scikit-learn>=1.4.0" && \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy application directories and pre-built frontend distribution
@@ -30,7 +30,7 @@ COPY docs/ ./docs/
 COPY reports/ ./reports/
 COPY models/ ./models/
 COPY data/ ./data/
-COPY frontend/dist/ ./frontend/dist/
+COPY frontend/dist ./frontend/dist
 
 # Execute analytical pipeline to generate reproducible dataset (>97k records) and sqlite database
 RUN python analytics/run_pipeline.py
