@@ -5,6 +5,7 @@ Connects the FastAPI API endpoints to the database and analytical model artifact
 
 import os
 import json
+import math
 from datetime import datetime
 from typing import Dict, Any, List, Optional
 from sqlalchemy.orm import Session
@@ -372,12 +373,25 @@ class AnalyticsService:
         return {"velocity_finding": {}, "continuous_tests": [], "categorical_tests": []}
         
     @staticmethod
+    def _sanitize_floats(obj: Any) -> Any:
+        if isinstance(obj, float):
+            if math.isinf(obj) or math.isnan(obj):
+                return 1.0
+            return obj
+        elif isinstance(obj, dict):
+            return {k: AnalyticsService._sanitize_floats(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [AnalyticsService._sanitize_floats(v) for v in obj]
+        return obj
+
+    @staticmethod
     def load_model_evaluation(model_id: str = "logistic_regression") -> Dict[str, Any]:
         path = os.path.join(METADATA_DIR, "model_evaluation.json")
         if os.path.exists(path):
             with open(path, "r") as f:
                 data = json.load(f)
-                return data.get(model_id, {})
+                result = data.get(model_id, {})
+                return AnalyticsService._sanitize_floats(result)
         return {}
         
     @staticmethod

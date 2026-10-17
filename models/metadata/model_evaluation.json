@@ -24,7 +24,7 @@
       {
         "fpr": 0.0,
         "tpr": 0.0,
-        "threshold": Infinity
+        "threshold": 1.0
       },
       {
         "fpr": 0.0017,
@@ -1021,7 +1021,7 @@
       {
         "fpr": 0.0,
         "tpr": 0.0,
-        "threshold": Infinity
+        "threshold": 1.0
       },
       {
         "fpr": 0.0025,

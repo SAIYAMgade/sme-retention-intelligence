@@ -63,7 +63,11 @@ def evaluate_model_holdout(
     fpr, tpr, roc_thresh = roc_curve(y_holdout, y_prob)
     step_roc = max(1, len(fpr) // 50)
     roc_points = [
-        {"fpr": round(float(fpr[i]), 4), "tpr": round(float(tpr[i]), 4), "threshold": round(float(roc_thresh[i]), 4)}
+        {
+            "fpr": round(float(fpr[i]), 4),
+            "tpr": round(float(tpr[i]), 4),
+            "threshold": 1.0 if np.isinf(roc_thresh[i]) else round(float(roc_thresh[i]), 4)
+        }
         for i in range(0, len(fpr), step_roc)
     ]
     # Ensure (1.0, 1.0) is included
