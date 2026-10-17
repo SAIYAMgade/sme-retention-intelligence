@@ -31,11 +31,12 @@ wheels/
 # Node & Frontend Build
 node_modules/
 frontend/node_modules/
-frontend/dist/
 frontend/.vite/
 backend/static/*
 !backend/static/.gitkeep
 dist/
+!frontend/dist/
+!frontend/dist/**
 .vite/
 npm-debug.log*
 yarn-debug.log*

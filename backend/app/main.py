@@ -32,7 +32,19 @@ app.add_middleware(
 app.include_router(api_router)
 
 # Locate frontend dist directory (for unified full-stack deployments such as Render or Docker)
-FRONTEND_DIST = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../frontend/dist"))
+FRONTEND_DIST = os.environ.get(
+    "FRONTEND_DIST",
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "../../frontend/dist"))
+)
+if not os.path.exists(FRONTEND_DIST) or not os.path.exists(os.path.join(FRONTEND_DIST, "index.html")):
+    for candidate in [
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "../static")),
+        os.path.abspath("frontend/dist"),
+        os.path.abspath("backend/static"),
+    ]:
+        if os.path.exists(candidate) and os.path.exists(os.path.join(candidate, "index.html")):
+            FRONTEND_DIST = candidate
+            break
 
 if os.path.exists(FRONTEND_DIST):
     # Mount assets directory for CSS, JS, images
