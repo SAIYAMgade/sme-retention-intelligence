@@ -1,0 +1,40 @@
+{
+  "total_smes": 6000,
+  "total_historical_charge_volume": 13031739.53,
+  "total_monthly_exposure_at_risk": 249488.42,
+  "tiers": [
+    {
+      "tier": "Tier 1 - High Priority",
+      "level": 1,
+      "badge_color": "red",
+      "sme_count": 2178,
+      "sme_percentage": 36.3,
+      "monthly_exposure_at_risk": 73597.36,
+      "exposure_percentage": 29.5,
+      "avg_churn_probability": 0.7199,
+      "description": "High churn risk and material monthly charge volume at risk."
+    },
+    {
+      "tier": "Tier 2 - Medium Priority",
+      "level": 2,
+      "badge_color": "amber",
+      "sme_count": 1274,
+      "sme_percentage": 21.23,
+      "monthly_exposure_at_risk": 73970.81,
+      "exposure_percentage": 29.65,
+      "avg_churn_probability": 0.3359,
+      "description": "Moderate churn risk or material volume exposure requiring investigation."
+    },
+    {
+      "tier": "Tier 3 - Low Priority",
+      "level": 3,
+      "badge_color": "emerald",
+      "sme_count": 2548,
+      "sme_percentage": 42.47,
+      "monthly_exposure_at_risk": 101920.26,
+      "exposure_percentage": 40.85,
+      "avg_churn_probability": 0.1347,
+      "description": "Lower estimated risk and limited volume exposure."
+    }
+  ]
+}

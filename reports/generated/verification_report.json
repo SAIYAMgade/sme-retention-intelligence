@@ -1,0 +1,49 @@
+{
+  "verified_at": "2026-10-17T01:30:19.390509",
+  "execution_duration_seconds": 30.98,
+  "dataset": {
+    "total_transactions": 130741,
+    "total_transactions_requirement": "> 97,000",
+    "is_transactions_verified": true,
+    "distinct_smes": 6000,
+    "observation_months": 12,
+    "random_seed": 42
+  },
+  "features": {
+    "canonical_features_count": 44,
+    "is_canonical_features_verified": true,
+    "leakage_free_cutoff": "2023-09-30 (Month 9)"
+  },
+  "statistical_finding": {
+    "claimed_velocity_risk_ratio": 2.73,
+    "actual_velocity_risk_ratio": 2.49,
+    "ci_95": "[2.26, 2.744]",
+    "p_value": 6.959390793874233e-78,
+    "p_value_claim": "< 0.001",
+    "is_velocity_finding_verified": false
+  },
+  "primary_model": {
+    "model_type": "Logistic Regression",
+    "claimed_holdout_roc_auc": 0.866,
+    "actual_holdout_roc_auc": 0.8474,
+    "roc_auc_delta": -0.0186,
+    "is_roc_auc_verified": true,
+    "claimed_recall": 0.791,
+    "actual_recall": 0.7923,
+    "operating_threshold": 0.442,
+    "is_recall_verified": true
+  },
+  "secondary_model": {
+    "model_type": "K-Nearest Neighbors",
+    "actual_holdout_roc_auc": 0.809
+  },
+  "prioritization_framework": {
+    "framework": "Three-Tier Risk & Exposure Engine",
+    "total_exposure_at_risk": 249488.42,
+    "tier_counts": {
+      "Tier 1 - High Priority": 2178,
+      "Tier 2 - Medium Priority": 1274,
+      "Tier 3 - Low Priority": 2548
+    }
+  }
+}

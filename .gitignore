@@ -1,0 +1,45 @@
+# Environments
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Testing & Cache
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large generated data (keep samples)
+data/generated/*.parquet
+data/generated/*.csv
+!data/samples/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment
+.env
+.env.local
