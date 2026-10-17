@@ -7,23 +7,33 @@ export default {
   theme: {
     extend: {
       colors: {
+        black: '#000000',
         brand: {
-          50: '#f0f5ff',
-          100: '#e0ecff',
-          200: '#c5dcfe',
-          300: '#9bc4fc',
-          400: '#69a4f8',
-          500: '#3d80f3',
-          600: '#2662e5',
-          700: '#1d4dc8',
-          800: '#1b40a1',
-          900: '#1b387e',
-          950: '#11224f',
+          50: '#fafafa',
+          100: '#f4f4f5',
+          200: '#e4e4e7',
+          300: '#d4d4d8',
+          400: '#a1a1aa',
+          500: '#71717a',
+          600: '#52525b',
+          700: '#3f3f46',
+          800: '#27272a',
+          900: '#18181b',
+          950: '#09090b',
         },
         slate: {
-          850: '#172033',
-          900: '#0f172a',
-          950: '#090d16',
+          950: '#000000', // Pure pitch black canvas
+          900: '#0a0a0a', // Dark obsidian card background
+          850: '#121214', // Slightly elevated surface
+          800: '#1c1c1f', // Sleek card border
+          700: '#27272a', // Inner border / divider
+          600: '#3f3f46',
+          500: '#71717a',
+          400: '#a1a1aa', // Secondary text
+          300: '#d4d4d8', // Primary body text
+          200: '#e4e4e7',
+          100: '#f4f4f5', // Headings / crisp white
+          50: '#ffffff',
         }
       },
     },

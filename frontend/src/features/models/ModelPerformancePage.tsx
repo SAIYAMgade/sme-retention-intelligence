@@ -165,14 +165,16 @@ export const ModelPerformancePage: React.FC = () => {
                       tickFormatter={(v) => v.toFixed(1)}
                     />
                     <Tooltip
-                      contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
+                      contentStyle={{ backgroundColor: '#050505', borderColor: '#27272a', borderRadius: '8px', fontSize: '12px', color: '#ffffff' }}
+                      itemStyle={{ color: '#ffffff' }}
+                      labelStyle={{ color: '#ffffff', fontWeight: 600 }}
                       formatter={(val: any, name: any) => [
                         `${(Number(val) * 100).toFixed(1)}%`,
                         name === 'tpr' ? 'True Positive Rate' : 'False Positive Rate'
                       ]}
                     />
-                    <ReferenceLine x={0} stroke="#334155" />
-                    <Line type="monotone" dataKey="tpr" stroke="#3d80f3" strokeWidth={2.5} dot={false} />
+                    <ReferenceLine x={0} stroke="#27272a" />
+                    <Line type="monotone" dataKey="tpr" stroke="#10b981" strokeWidth={2.5} dot={false} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>

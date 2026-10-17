@@ -164,17 +164,20 @@ export const CustomerDetailPage: React.FC = () => {
         <div className="h-60 w-full pt-2">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={monthly_activity} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-              <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 11 }} />
-              <YAxis stroke="#64748b" tick={{ fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#1f1f23" />
+              <XAxis dataKey="month" stroke="#71717a" tick={{ fontSize: 11, fill: '#a1a1aa' }} />
+              <YAxis stroke="#71717a" tick={{ fontSize: 11, fill: '#a1a1aa' }} />
               <Tooltip
-                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px', fontSize: '12px' }}
+                cursor={false}
+                contentStyle={{ backgroundColor: '#050505', borderColor: '#27272a', borderRadius: '8px', fontSize: '12px', color: '#ffffff' }}
+                itemStyle={{ color: '#ffffff' }}
+                labelStyle={{ color: '#ffffff', fontWeight: 600 }}
                 formatter={(val: any, name: any) => [
                   `${val} ${name === 'tx_count' ? 'Transactions' : 'Failed'}`,
                   name === 'tx_count' ? 'Activity' : 'Failures'
                 ]}
               />
-              <Bar dataKey="tx_count" fill="#3d80f3" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="tx_count" fill="#10b981" radius={[4, 4, 0, 0]} />
               <Bar dataKey="failed_count" fill="#ef4444" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
