@@ -28,8 +28,26 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+import time
+from datetime import datetime, timezone
+
+START_TIME = time.time()
+
 # Mount API router
 app.include_router(api_router)
+
+@app.get("/health", tags=["System"])
+def root_health():
+    """
+    Lightweight health endpoint designed for UptimeRobot and cloud keepalive probes.
+    Keeps Render free tier services awake by answering with 200 OK, timestamp, and uptime.
+    """
+    return {
+        "status": "ok",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "uptime": round(time.time() - START_TIME, 2),
+        "service": "sme-retention-intelligence"
+    }
 
 # Locate frontend dist directory (for unified full-stack deployments such as Render or Docker)
 FRONTEND_DIST = os.environ.get(
@@ -55,8 +73,8 @@ if os.path.exists(FRONTEND_DIST):
     # Serve index.html for root and any client-side SPA route not matching /api or /docs
     @app.get("/{full_path:path}", include_in_schema=False)
     async def serve_spa(full_path: str):
-        # Exclude API, docs, redoc, openapi.json
-        if full_path.startswith(("api", "docs", "redoc", "openapi.json")):
+        # Exclude API, docs, redoc, openapi.json, health
+        if full_path.startswith(("api", "docs", "redoc", "openapi.json", "health")):
             return RedirectResponse(url=f"/{full_path}")
         
         # Check if the requested file exists in dist (e.g., favicon.ico, vite.svg)
