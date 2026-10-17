@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { Layout } from '../components/layout/Layout';
+import { ExperienceHero } from '../components/ui/experience-hero';
 
 import { OverviewPage } from '../features/overview/OverviewPage';
 import { PortfolioPage } from '../features/customers/PortfolioPage';
@@ -15,11 +16,18 @@ import { ReportsExportsPage } from '../features/reports/ReportsExportsPage';
 import { MethodologyPage } from '../features/methodology/MethodologyPage';
 
 export const router = createBrowserRouter([
+  // Cinematic Landing Page as Root Entrypoint
+  {
+    path: '/',
+    element: <ExperienceHero />,
+  },
+  // Application Workspace under Layout
   {
     path: '/',
     element: <Layout />,
     children: [
-      { index: true, element: <OverviewPage /> },
+      { path: 'overview', element: <OverviewPage /> },
+      { path: 'dashboard', element: <OverviewPage /> },
       { path: 'customers', element: <PortfolioPage /> },
       { path: 'customers/:smeId', element: <CustomerDetailPage /> },
       { path: 'prioritization', element: <PrioritizationPage /> },
@@ -30,7 +38,7 @@ export const router = createBrowserRouter([
       { path: 'quality', element: <DataQualityPage /> },
       { path: 'reports', element: <ReportsExportsPage /> },
       { path: 'methodology', element: <MethodologyPage /> },
-      { path: '*', element: <Navigate to="/" replace /> },
+      { path: '*', element: <Navigate to="/overview" replace /> },
     ],
   },
 ]);

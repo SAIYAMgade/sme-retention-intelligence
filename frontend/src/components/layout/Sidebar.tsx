@@ -21,7 +21,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { name: 'Executive Overview', path: '/', icon: LayoutDashboard },
+  { name: 'Executive Overview', path: '/overview', icon: LayoutDashboard },
   { name: 'SME Portfolio', path: '/customers', icon: Users },
   { name: 'Risk Prioritization', path: '/prioritization', icon: AlertTriangle, badge: '3-Tier' },
   { name: 'Feature Explorer', path: '/features', icon: Sliders, badge: '44' },
