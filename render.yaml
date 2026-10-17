@@ -1,0 +1,22 @@
+# ==============================================================================
+# Render Blueprint Specification (render.yaml)
+# SME Retention Intelligence - Revenue Analytics Platform
+# ==============================================================================
+
+services:
+  # ----------------------------------------------------------------------------
+  # Unified Full-Stack Production Service (Docker Web Service)
+  # Combines React 18 SPA + FastAPI + Precomputed Analytics Database
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: sme-retention-intelligence
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: PYTHONUNBUFFERED
+        value: "1"

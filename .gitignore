@@ -1,45 +1,90 @@
-# Environments
+# ==========================================
+# SME Retention Intelligence - Git Exclusions
+# ==========================================
+
+# Python Environments & Caching
 .venv/
 venv/
 ENV/
 env/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Node
+# Node & Frontend Build
 node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
 dist/
 .vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Testing & Cache
+# Testing & Coverage
 .pytest_cache/
 .coverage
 htmlcov/
 .mypy_cache/
 .ruff_cache/
+coverage.xml
+*.cover
 
-# IDE
+# IDEs & Editors
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-project
+*.sublime-workspace
 
-# OS
+# Operating System Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+desktop.ini
 
-# Large generated data (keep samples)
-data/generated/*.parquet
-data/generated/*.csv
-!data/samples/
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Local databases
+# Databases & Runtime Output (Generated on Render during build)
 *.db
 *.sqlite
 *.sqlite3
+data/generated/*.parquet
+data/generated/*.csv
+!data/samples/
+*.log
 
-# Environment
-.env
-.env.local
+# Render and Cloud Caches
+.render/

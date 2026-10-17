@@ -12,7 +12,8 @@ import {
   ModelEvaluation
 } from '../types';
 
-const API_BASE = '/api/v1';
+const BASE_URL = import.meta.env.VITE_API_URL || '';
+const API_BASE = `${BASE_URL.replace(/\/$/, '')}/api/v1`;
 
 export async function fetchOverview(): Promise<OverviewData> {
   const res = await fetch(`${API_BASE}/overview`);
