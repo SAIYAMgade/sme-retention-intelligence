@@ -17,9 +17,9 @@ develop-eggs/
 dist/
 downloads/
 eggs/
-.eggs/
-lib/
-lib64/
+/lib/
+/lib64/
+!frontend/src/lib/
 parts/
 sdist/
 var/
@@ -33,6 +33,8 @@ node_modules/
 frontend/node_modules/
 frontend/dist/
 frontend/.vite/
+backend/static/*
+!backend/static/.gitkeep
 dist/
 .vite/
 npm-debug.log*

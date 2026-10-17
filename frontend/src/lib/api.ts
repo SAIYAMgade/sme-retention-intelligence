@@ -12,7 +12,7 @@ import {
   ModelEvaluation
 } from '../types';
 
-const BASE_URL = import.meta.env.VITE_API_URL || '';
+const BASE_URL = ((import.meta as any).env?.VITE_API_URL as string) || '';
 const API_BASE = `${BASE_URL.replace(/\/$/, '')}/api/v1`;
 
 export async function fetchOverview(): Promise<OverviewData> {
